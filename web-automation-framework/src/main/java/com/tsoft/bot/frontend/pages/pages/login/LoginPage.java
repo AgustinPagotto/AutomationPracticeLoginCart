@@ -28,16 +28,16 @@ public class LoginPage extends BaseClass {
     }
 
     public void enterUrl(String urlTestCase) throws Throwable {
-        mensaje = "Se selecciona sign in ingresa su mail y selecciona Create an account";
+        mensaje = "Se ingresa a la url y se selecciona el boton Sign In";
         try {
             int countPage = Integer.parseInt(urlTestCase) - 1;
             String url = getData().get(countPage).get(ExcelDataObjects.COLUMN_URL);
             driver.get(url);
-            click(driver, AutomationPracticeObjects.BTN_SIGNIN);
-            stepPass(driver, mensaje);
             generateWord.sendText(mensaje);
             generateWord.addImageToWord(driver);
-            System.out.println("SE INGRESO A LA URL");
+            System.out.println(mensaje);
+            click(driver, AutomationPracticeObjects.BTN_SIGNIN);
+            stepPass(driver, mensaje);
         }
         catch (Exception we)
         {
@@ -49,7 +49,7 @@ public class LoginPage extends BaseClass {
     }
 
     public void login(String casoPrueba) throws Throwable {
-        mensaje = "Se ingresó todos los datos";
+        mensaje = "Se crea un usuario y se ingresan todos los datos del cliente";
         try {
             WebDriverWait wait = new WebDriverWait(driver, 30);
             wait.until(ExpectedConditions.visibilityOfElementLocated(AutomationPracticeObjects.HDR_CREATEACCOUNT));
@@ -76,13 +76,13 @@ public class LoginPage extends BaseClass {
                 if(isDisplayed(driver,AutomationPracticeObjects.DIV_ALERT)){
                     typeText(driver, AutomationPracticeObjects.INPUT_EMAILLOGIN, email);
                     typeText(driver, AutomationPracticeObjects.INPUT_PASSWORDLOGIN, passwd);
-                    click(driver, AutomationPracticeObjects.BTN_LOGIN);
-                    sleep(3500);
-                    mensaje="Email ya registrado, se inicia sesión";
+                    mensaje="Se intenta crear un usuario dado que el Email ya esta registrado, se llenan los campos de login y se inicia sesión";
                     System.out.println(mensaje);
                     stepPass(driver, mensaje);
                     generateWord.sendText(mensaje);
                     generateWord.addImageToWord(driver);
+                    click(driver, AutomationPracticeObjects.BTN_LOGIN);
+                    sleep(3500);
                 }
             }catch(Exception e){
                 System.out.println("HOLA");
@@ -101,12 +101,12 @@ public class LoginPage extends BaseClass {
                 selectByValue(driver, AutomationPracticeObjects.DROPDOWN_MONTH, month);
                 selectByValue(driver, AutomationPracticeObjects.DROPDOWN_YEAR, year);
                 selectByVisibleText(driver, AutomationPracticeObjects.DROPDOWN_STATE, state);
-                sleep(3500);
                 System.out.println(mensaje);
-                stepPass(driver, mensaje);
                 generateWord.sendText(mensaje);
                 generateWord.addImageToWord(driver);
                 click(driver, AutomationPracticeObjects.BTN_REGISTER);
+                stepPass(driver, mensaje);
+                sleep(3500);
             }
         }
         catch (Exception we)
