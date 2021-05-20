@@ -135,7 +135,7 @@ public class LoginPage extends BaseClass {
                 generateWord.addImageToWord(driver);
             }
             //Consulta
-            driver.quit();
+            //driver.quit();
         }
         catch (Exception we)
         {
