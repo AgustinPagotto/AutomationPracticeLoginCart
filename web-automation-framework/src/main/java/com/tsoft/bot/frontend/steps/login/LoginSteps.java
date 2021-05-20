@@ -3,6 +3,7 @@ package com.tsoft.bot.frontend.steps.login;
 import com.tsoft.bot.frontend.helpers.Hook;
 import com.tsoft.bot.frontend.pages.pages.compra.*;
 import com.tsoft.bot.frontend.pages.pages.login.LoginPage;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -28,16 +29,6 @@ public class LoginSteps {
         login.login(setNumberCredentials);
     }
 
-    @Then("^Se valida el inicio de sesion \"([^\"]*)\"$")
-    public void seValidaElInicioDeSesion(String setNumberCredentials) throws Throwable {
-        login.validarLogin(setNumberCredentials);
-    }
-
-    @And("^Ingreso en la categoria Women$")
-    public void ingresoEnLaCategoriaWomen() throws Throwable {
-        atPage.clickButtonWomen();
-    }
-
     @And("^Agrego cuatro productos al carrito$")
     public void agregoCuatroProductosAlCarrito() throws Throwable {
         atPage.agregarCarritoFadedShortSleeve();
@@ -47,8 +38,18 @@ public class LoginSteps {
 
     }
 
-    @And("^Valido que esten los cuatro productos seleccionados$")
-    public void validoQueEstenLosCuatroProductosSeleccionados() throws Throwable {
+    @And("^Se valida el inicio de sesión \"([^\"]*)\"$")
+    public void seValidaElInicioDeSesión(String setNumberCredentials) throws Throwable {
+        login.validarLogin(setNumberCredentials);
+    }
+
+    @And("^Ingreso en la categoría Women$")
+    public void ingresoEnLaCategoríaWomen() throws Throwable{
+        atPage.clickButtonWomen();
+    }
+
+    @Then("^Valido que estén los cuatro productos seleccionados$")
+    public void validoQueEsténLosCuatroProductosSeleccionados() throws Throwable{
         atPage.comprobarPrecio();
         atPage.procederCheckout();
     }
