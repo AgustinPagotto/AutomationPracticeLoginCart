@@ -6,6 +6,7 @@ import com.tsoft.bot.frontend.utility.GenerateWord;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -61,7 +62,8 @@ public class Hook extends Listener {
 					driver = new InternetExplorerDriver(options);
 					break;
 				case "Chrome":
-					System.setProperty(CHROME_KEY, FileHelper.getProjectFolder() + CHROME_DRIVER);
+//             System.setProperty(CHROME_KEY, FileHelper.getProjectFolder() + CHROME_DRIVER);
+					WebDriverManager.chromedriver().setup();
 					System.setProperty("webdriver.chrome.silentOutput", "true");
 					ChromeOptions chromeOptions = new ChromeOptions();
 					chromeOptions.addArguments(

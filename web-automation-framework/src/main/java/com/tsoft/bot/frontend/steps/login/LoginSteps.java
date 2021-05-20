@@ -15,18 +15,18 @@ public class LoginSteps {
         this.driver = Hook.getDriver();
     }
 
-    @Given("^Usuario ingresa url selecciona Dealer User y dealer login\"([^\"]*)\"$")
-    public void usuarioIngresaUrlSeleccionaDealerUserYDealerLogin(String setNumberUrl) throws Throwable {
+    @Given("^Usuario ingresa url selecciona sign in ingresa su mail y selecciona Create an account \"([^\"]*)\"$")
+    public void UsuarioIngresaUrlSeleccionaSignInIngresaSuMailySeleccionaCreateAnAccount(String setNumberUrl) throws Throwable {
         login.enterUrl(setNumberUrl);
     }
 
-    @When("^Usuario ingresa usuario y contrasena \"([^\"]*)\"$")
-    public void usuarioIngresaUsuarioYContrasena(String setNumberCredentials) throws Throwable {
+    @When("^Usuario ingresa sus datos \"([^\"]*)\"$")
+    public void usuarioIngresaSusDatos(String setNumberCredentials) throws Throwable {
         login.login(setNumberCredentials);
     }
 
-    @Then("^Se valida el inicio de sesion$")
-    public void seValidaElInicioDeSesion() throws Exception {
-        login.validarLogin();
+    @Then("^Se valida el inicio de sesion \"([^\"]*)\"$")
+    public void seValidaElInicioDeSesion(String setNumberCredentials) throws Throwable {
+        login.validarLogin(setNumberCredentials);
     }
 }

@@ -7,6 +7,7 @@ import com.tsoft.bot.frontend.utility.Sleeper;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import java.io.IOException;
 import java.util.NoSuchElementException;
@@ -20,6 +21,23 @@ public class BaseClass {
     public BaseClass(WebDriver driver){
     }
 
+    protected void errorPresented(WebDriver driver, By locator, String errorMessage) throws IOException {
+        try {
+            if(driver.findElement(locator).isDisplayed()){
+                System.out.println(errorMessage);
+                generateWord.sendText(errorMessage);
+                generateWord.addImageToWord(driver);
+                driver.quit();
+                Assert.assertFalse(true);
+            } else {
+                return;
+            }
+        }catch (RuntimeException we){
+            errorNoElementFound(driver, locator);
+            throw we;
+        }
+    }
+
     protected void click(WebDriver driver, By locator) throws IOException {
         try {
             driver.findElement(locator).click();
@@ -29,9 +47,29 @@ public class BaseClass {
         }
     }
 
+    protected WebElement findElement(WebDriver driver,By locator)throws IOException {
+        try {
+            return driver.findElement(locator);
+        }
+        catch (RuntimeException we){
+            errorNoElementFound(driver, locator);
+            throw we;
+        }
+    }
+
     protected void clear(WebDriver driver, By locator) throws IOException {
         try {
             driver.findElement(locator).clear();
+        }catch (RuntimeException we){
+            errorNoElementFound(driver, locator);
+            throw we;
+        }
+    }
+
+    //OBTENER TEXTO DEL ELEMENTO
+    protected String getText(WebDriver driver, By locator) throws IOException {
+        try {
+            return driver.findElement(locator).getText();
         }catch (RuntimeException we){
             errorNoElementFound(driver, locator);
             throw we;
@@ -60,6 +98,17 @@ public class BaseClass {
         try {
             Select typeSelect = new Select(driver.findElement(locator));
             typeSelect.selectByVisibleText(text);
+        }catch (RuntimeException we){
+            errorNoElementFound(driver, locator);
+            throw we;
+        }
+    }
+
+    //SELECT por Valor
+    protected void selectByValue(WebDriver driver, By locator, String text) throws IOException {
+        try {
+            Select typeSelect = new Select(driver.findElement(locator));
+            typeSelect.selectByValue(text);
         }catch (RuntimeException we){
             errorNoElementFound(driver, locator);
             throw we;
