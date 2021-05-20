@@ -12,11 +12,7 @@ import org.openqa.selenium.WebDriver;
 public class LoginSteps {
     private WebDriver driver;
     private final LoginPage login = new LoginPage(driver);
-    private final AutomationPracticeHomePage atHomePage = new AutomationPracticeHomePage(driver);
-    private final AutomationPracticeCartLogin atCartLogin = new AutomationPracticeCartLogin(driver);
-    private final AutomatinoPracticeSummary atSummary = new AutomatinoPracticeSummary(driver);
-    private final AutomationPracticeCartAddress atCartAddress = new AutomationPracticeCartAddress(driver);
-    private final AutomationPracticeWomenPage atWomenPage = new AutomationPracticeWomenPage(driver);
+    private final AutomationPractice atPage = new AutomationPractice (driver);
 
     public LoginSteps() {
         this.driver = Hook.getDriver();
@@ -39,21 +35,21 @@ public class LoginSteps {
 
     @And("^Ingreso en la categoria Women$")
     public void ingresoEnLaCategoriaWomen() throws Throwable {
-        atHomePage.clickButtonWomen();
+        atPage.clickButtonWomen();
     }
 
     @And("^Agrego cuatro productos al carrito$")
     public void agregoCuatroProductosAlCarrito() throws Throwable {
-        atWomenPage.agregarCarritoFadedShortSleeve();
-        atWomenPage.agregarCarritoBlouse();
-        atWomenPage.agregarCarritoPrintedDress();
-        atWomenPage.agregarCarritoPrintedSummer();
+        atPage.agregarCarritoFadedShortSleeve();
+        atPage.agregarCarritoBlouse();
+        atPage.agregarCarritoPrintedDress();
+        atPage.agregarCarritoPrintedSummer();
 
     }
 
     @And("^Valido que esten los cuatro productos seleccionados$")
     public void validoQueEstenLosCuatroProductosSeleccionados() throws Throwable {
-        atSummary.comprobarPrecio();
-        atSummary.procederCheckout();
+        atPage.comprobarPrecio();
+        atPage.procederCheckout();
     }
 }
