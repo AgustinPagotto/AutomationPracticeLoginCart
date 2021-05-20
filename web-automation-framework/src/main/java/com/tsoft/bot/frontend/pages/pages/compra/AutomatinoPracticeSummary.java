@@ -3,7 +3,6 @@ package com.tsoft.bot.frontend.pages.pages.compra;
 import com.tsoft.bot.frontend.base.BaseClass;
 import com.tsoft.bot.frontend.helpers.Hook;
 import com.tsoft.bot.frontend.pages.objects.AutomationPracticeObjects;
-import com.tsoft.bot.frontend.pages.objects.McssObjects;
 import com.tsoft.bot.frontend.utility.GenerateWord;
 import org.openqa.selenium.WebDriver;
 
