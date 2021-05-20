@@ -19,6 +19,8 @@ public class AutomatinoPracticeSummary extends BaseClass {
     public void procederCheckout() throws Throwable {
         sleep(2500);
         click(driver, AutomationPracticeObjects.BTN_PROCEDERCHECKOUT);
+        sleep(3000);
+        driver.quit();
     }
 
     public void comprobarPrecio() throws Throwable{

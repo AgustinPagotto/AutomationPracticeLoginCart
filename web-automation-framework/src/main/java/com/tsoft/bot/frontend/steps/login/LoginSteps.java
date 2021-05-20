@@ -48,11 +48,12 @@ public class LoginSteps {
         atWomenPage.agregarCarritoBlouse();
         atWomenPage.agregarCarritoPrintedDress();
         atWomenPage.agregarCarritoPrintedSummer();
-        atSummary.procederCheckout();
+
     }
 
     @And("^Valido que esten los cuatro productos seleccionados$")
     public void validoQueEstenLosCuatroProductosSeleccionados() throws Throwable {
         atSummary.comprobarPrecio();
+        atSummary.procederCheckout();
     }
 }
