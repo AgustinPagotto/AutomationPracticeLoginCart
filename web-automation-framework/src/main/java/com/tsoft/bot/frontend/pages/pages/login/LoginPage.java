@@ -72,30 +72,42 @@ public class LoginPage extends BaseClass {
             typeText(driver, AutomationPracticeObjects.INPUT_EMAILADDRESS, email);
             click(driver, AutomationPracticeObjects.BTN_CREATEACCOUNT);
             sleep(5000);
-
-
-            wait.until(ExpectedConditions.visibilityOfElementLocated(AutomationPracticeObjects.HDR_CREATEANACCOUNT));
-            click(driver,AutomationPracticeObjects.RADIOBTN_MR);
-            typeText(driver, AutomationPracticeObjects.INPUT_FIRSTNAME, firstName);
-            typeText(driver, AutomationPracticeObjects.INPUT_LASTNAME, lastName);
-            typeText(driver, AutomationPracticeObjects.INPUT_PASSWORD, passwd);
-            typeText(driver, AutomationPracticeObjects.INPUT_CITY, city);
-            typeText(driver, AutomationPracticeObjects.INPUT_ZIP, zip);
-            typeText(driver, AutomationPracticeObjects.INPUT_ADDRESS, direction);
-            typeText(driver, AutomationPracticeObjects.INPUT_PHONENUMBER, phoneNumber);
-            clear(driver,AutomationPracticeObjects.INPUT_ALIAS);
-            typeText(driver, AutomationPracticeObjects.INPUT_ALIAS, alias);
-            selectByValue(driver,AutomationPracticeObjects.DROPDOWN_DAY,day);
-            selectByValue(driver,AutomationPracticeObjects.DROPDOWN_MONTH,month);
-            selectByValue(driver,AutomationPracticeObjects.DROPDOWN_YEAR,year);
-            selectByVisibleText(driver,AutomationPracticeObjects.DROPDOWN_STATE,state);
-
-            sleep(3500);
-            System.out.println(mensaje);
-            stepPass(driver, mensaje);
-            generateWord.sendText(mensaje);
-            generateWord.addImageToWord(driver);
-            click(driver, AutomationPracticeObjects.BTN_REGISTER);
+            try{
+                if(isDisplayed(driver,AutomationPracticeObjects.DIV_ALERT)){
+                    typeText(driver, AutomationPracticeObjects.INPUT_EMAILLOGIN, email);
+                    typeText(driver, AutomationPracticeObjects.INPUT_PASSWORDLOGIN, passwd);
+                    click(driver, AutomationPracticeObjects.BTN_LOGIN);
+                    sleep(3500);
+                    mensaje="Email ya registrado, se inicia sesión";
+                    System.out.println(mensaje);
+                    stepPass(driver, mensaje);
+                    generateWord.sendText(mensaje);
+                    generateWord.addImageToWord(driver);
+                }
+            }catch(Exception e){
+                System.out.println("HOLA");
+                wait.until(ExpectedConditions.visibilityOfElementLocated(AutomationPracticeObjects.HDR_CREATEANACCOUNT));
+                click(driver, AutomationPracticeObjects.RADIOBTN_MR);
+                typeText(driver, AutomationPracticeObjects.INPUT_FIRSTNAME, firstName);
+                typeText(driver, AutomationPracticeObjects.INPUT_LASTNAME, lastName);
+                typeText(driver, AutomationPracticeObjects.INPUT_PASSWORD, passwd);
+                typeText(driver, AutomationPracticeObjects.INPUT_CITY, city);
+                typeText(driver, AutomationPracticeObjects.INPUT_ZIP, zip);
+                typeText(driver, AutomationPracticeObjects.INPUT_ADDRESS, direction);
+                typeText(driver, AutomationPracticeObjects.INPUT_PHONENUMBER, phoneNumber);
+                clear(driver, AutomationPracticeObjects.INPUT_ALIAS);
+                typeText(driver, AutomationPracticeObjects.INPUT_ALIAS, alias);
+                selectByValue(driver, AutomationPracticeObjects.DROPDOWN_DAY, day);
+                selectByValue(driver, AutomationPracticeObjects.DROPDOWN_MONTH, month);
+                selectByValue(driver, AutomationPracticeObjects.DROPDOWN_YEAR, year);
+                selectByVisibleText(driver, AutomationPracticeObjects.DROPDOWN_STATE, state);
+                sleep(3500);
+                System.out.println(mensaje);
+                stepPass(driver, mensaje);
+                generateWord.sendText(mensaje);
+                generateWord.addImageToWord(driver);
+                click(driver, AutomationPracticeObjects.BTN_REGISTER);
+            }
         }
         catch (Exception we)
         {

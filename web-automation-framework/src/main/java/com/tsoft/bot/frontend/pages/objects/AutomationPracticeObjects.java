@@ -10,6 +10,8 @@ public class AutomationPracticeObjects {
     //LOG IN PAGE
     //Inputs
     public static final By INPUT_EMAILADDRESS= By.xpath("//input[@id='email_create']");
+    public static final By INPUT_EMAILLOGIN= By.xpath("//input[@id='email']");
+    public static final By INPUT_PASSWORDLOGIN= By.xpath("//input[@id='passwd']");
     public static final By INPUT_FIRSTNAME= By.id("customer_firstname");
     public static final By INPUT_LASTNAME= By.id("customer_lastname");
     public static final By INPUT_PASSWORD= By.id("passwd");
@@ -28,6 +30,7 @@ public class AutomationPracticeObjects {
     //Buttons
     public static final By BTN_CREATEACCOUNT = By.xpath("//button[@id='SubmitCreate']");
     public static final By BTN_REGISTER = By.xpath("//button[@id='submitAccount']");
+    public static final By BTN_LOGIN = By.xpath("//button[@id='SubmitLogin']");
     //Text
     public static final By HDR_CREATEANACCOUNT = By.xpath("//h1[contains(text(),'Create an account')]");
     public static final By HDR_CREATEACCOUNT = By.xpath("//h3[contains(text(),'Create an account')]");
