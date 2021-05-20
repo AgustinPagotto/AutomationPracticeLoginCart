@@ -49,7 +49,7 @@ public class LoginPage extends BaseClass {
     }
 
     public void login(String casoPrueba) throws Throwable {
-        mensaje = "Se crea un usuario y se ingresan todos los datos del cliente";
+        mensaje = "Se ingresa el email y se selecciona el boton Create an Account";
         try {
             WebDriverWait wait = new WebDriverWait(driver, 30);
             wait.until(ExpectedConditions.visibilityOfElementLocated(AutomationPracticeObjects.HDR_CREATEACCOUNT));
@@ -71,12 +71,14 @@ public class LoginPage extends BaseClass {
 
             typeText(driver, AutomationPracticeObjects.INPUT_EMAILADDRESS, email);
             click(driver, AutomationPracticeObjects.BTN_CREATEACCOUNT);
+            generateWord.sendText(mensaje);
+            generateWord.addImageToWord(driver);
             sleep(5000);
             try{
                 if(isDisplayed(driver,AutomationPracticeObjects.DIV_ALERT)){
                     typeText(driver, AutomationPracticeObjects.INPUT_EMAILLOGIN, email);
                     typeText(driver, AutomationPracticeObjects.INPUT_PASSWORDLOGIN, passwd);
-                    mensaje="Se intenta crear un usuario dado que el Email ya esta registrado, se llenan los campos de login y se inicia sesión";
+                    mensaje="Se intenta crear un usuario, dado que el Email ya esta registrado, se llenan los campos de login y se inicia sesión";
                     System.out.println(mensaje);
                     stepPass(driver, mensaje);
                     generateWord.sendText(mensaje);
@@ -85,7 +87,6 @@ public class LoginPage extends BaseClass {
                     sleep(3500);
                 }
             }catch(Exception e){
-                System.out.println("HOLA");
                 wait.until(ExpectedConditions.visibilityOfElementLocated(AutomationPracticeObjects.HDR_CREATEANACCOUNT));
                 click(driver, AutomationPracticeObjects.RADIOBTN_MR);
                 typeText(driver, AutomationPracticeObjects.INPUT_FIRSTNAME, firstName);
@@ -101,11 +102,12 @@ public class LoginPage extends BaseClass {
                 selectByValue(driver, AutomationPracticeObjects.DROPDOWN_MONTH, month);
                 selectByValue(driver, AutomationPracticeObjects.DROPDOWN_YEAR, year);
                 selectByVisibleText(driver, AutomationPracticeObjects.DROPDOWN_STATE, state);
+                mensaje="Se llena los campos con los datos del cliente para el registro ";
                 System.out.println(mensaje);
                 generateWord.sendText(mensaje);
                 generateWord.addImageToWord(driver);
-                click(driver, AutomationPracticeObjects.BTN_REGISTER);
                 stepPass(driver, mensaje);
+                click(driver, AutomationPracticeObjects.BTN_REGISTER);
                 sleep(3500);
             }
         }
